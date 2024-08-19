@@ -34,16 +34,24 @@ login_page = "https://hh.ru/account/login"
 resume_stats_page = "https://hh.ru/applicant/resumes"
 
 def login():
+    print("STEP: login .\n")
     driver.get(login_page)
+
+    print("waiting element login .\n")
     wait.until(EC.element_to_be_clickable((By.NAME, 'login'))).send_keys(username)
 
+    print("waiting //button[@data-qa='expand-login-by-password']\n")
     show_more_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@data-qa='expand-login-by-password']")))
     driver.execute_script('arguments[0].click()', show_more_button)
 
+    print("waiting //input[@type='password']\n")
     wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@type='password']"))).send_keys(password)
 
+    print("waiting //button[@data-qa='account-login-submit']\n")
     login_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@data-qa='account-login-submit']")))
     driver.execute_script('arguments[0].click()', login_button)
+
+    print("LOGIN SUCCESSFULLY")
 
 def scroll_to_bottom():
     reached_page_end= False
@@ -60,6 +68,7 @@ def scroll_to_bottom():
             last_height = new_height
 
 def resume_raise():
+    print("STEP: resume_raise .\n")
     try:
         raise_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., "Поднять в поиске")]')))
         # raise_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[@data-qa="resume-update-button_actions"]//span[contains(., "Поднять в поиске")]/parent::button')))
