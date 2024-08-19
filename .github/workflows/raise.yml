@@ -30,11 +30,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Ensure correct Edge and msedgedriver versions
-        run: |
-          choco install msedge
-          choco install msedgedriver
-
       # Install Python
       - name: setup python
         uses: actions/setup-python@v3
@@ -45,6 +40,15 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install selenium
+
+      - name: Download msedgedriver
+        run: |
+          Invoke-WebRequest -Uri "https://msedgedriver.azureedge.net/100.0.1154.0/edgedriver_win64.zip" -OutFile "msedgedriver.zip"
+          Expand-Archive msedgedriver.zip -DestinationPath .
+
+      - name: Add msedgedriver to PATH
+        run: |
+          $env:PATH += ";$PWD"
 
       - name: Raise the resume
         run: python ./bot/raise.py
