@@ -30,6 +30,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: Ensure correct Edge and msedgedriver versions
+        run: |
+          choco install msedge
+          choco install msedgedriver
+
       # Install Python
       - name: setup python
         uses: actions/setup-python@v3
