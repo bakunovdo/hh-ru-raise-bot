@@ -70,8 +70,8 @@ def scroll_to_bottom():
 def resume_raise():
     print("STEP: resume_raise .\n")
     try:
-        raise_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., "Поднять в поиске")]')))
-        # raise_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[@data-qa="resume-update-button_actions"]//span[contains(., "Поднять в поиске")]/parent::button')))
+        print("waiting raise_button']\n")
+        raise_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '[data-qa=resume-update-button_actions]')))
         action.move_to_element(raise_button).perform()
         time.sleep(0.5)
         action.click(raise_button).perform()
