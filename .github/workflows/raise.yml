@@ -43,7 +43,7 @@ jobs:
 
       - name: Download msedgedriver
         run: |
-          Invoke-WebRequest -Uri "https://msedgedriver.azureedge.net/127.0.2651.98/edgedriver_win64.zip" -OutFile "msedgedriver.zip"
+          Invoke-WebRequest -Uri "https://msedgedriver.azureedge.net/129.0.2792.52/edgedriver_win64.zip" -OutFile "msedgedriver.zip"
           Expand-Archive msedgedriver.zip -DestinationPath .
 
       - name: Add msedgedriver to PATH
